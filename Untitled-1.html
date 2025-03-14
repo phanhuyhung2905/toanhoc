@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Làng Chài X Hùng Tool </title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #ffcccc, #ffe6e6);
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+        .container {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 10;
+        }
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .menu button, .action-buttons button {
+            background: #ff4d79;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            font-weight: 600;
+        }
+        .menu button:hover, .action-buttons button:hover {
+            background: #ff1a4d;
+            transform: scale(1.1);
+        }
+        h2 {
+            color: #ff3385;
+        }
+        .image-display {
+            margin-top: 10px;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .image-display img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .image-display img:hover {
+            transform: scale(1.05);
+        }
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: white;
+            font-size: 1.2em;
+            user-select: none;
+            z-index: 1;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        .action-buttons {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="home">
+        <div class="menu">
+            <button onclick="showHome()">🏠 Trang Chủ</button>
+            <button onclick="showImage1()">🖼️ Hình Ảnh 1</button>
+            <button onclick="showImage2()">🖼️ Hình Ảnh 2</button>
+            <button onclick="showImage3()">🖼️ Hình Ảnh 3</button>
+        </div>
+        <div id="homeContent">
+            <h2>🌸 Phan Huy Hùng "Lớp 9/4" 🌸</h2>
+            <p>Đây là web với mục đích trường tồn lưu trữ ảnh theo thời gian của chúng ta.</p>
+        </div>
+        <div id="image1Content" style="display:none;">
+            <h2>🖼️ Hình Ảnh 1</h2>
+            <div class="image-display">
+                <img src="https://raw.githubusercontent.com/phanhuyhung2905/toanhoc/main/1.jpg" alt="Ảnh 1">
+            </div>
+        </div>
+        <div id="image2Content" style="display:none;">
+            <h2>🖼️ Hình Ảnh 2</h2>
+            <div class="image-display">
+                <img src="https://raw.githubusercontent.com/phanhuyhung2905/toanhoc/main/2.jpg" alt="Ảnh 2">
+            </div>
+        </div>
+        <div id="image3Content" style="display:none;">
+            <h2>🖼️ Hình Ảnh 3</h2>
+            <div class="image-display">
+                <img src="https://raw.githubusercontent.com/phanhuyhung2905/toanhoc/main/3.jpg" alt="Ảnh 3">
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showHome() {
+            document.getElementById("homeContent").style.display = "block";
+            document.getElementById("image1Content").style.display = "none";
+            document.getElementById("image2Content").style.display = "none";
+            document.getElementById("image3Content").style.display = "none";
+        }
+        function showImage1() {
+            document.getElementById("homeContent").style.display = "none";
+            document.getElementById("image1Content").style.display = "block";
+            document.getElementById("image2Content").style.display = "none";
+            document.getElementById("image3Content").style.display = "none";
+        }
+        function showImage2() {
+            document.getElementById("homeContent").style.display = "none";
+            document.getElementById("image1Content").style.display = "none";
+            document.getElementById("image2Content").style.display = "block";
+            document.getElementById("image3Content").style.display = "none";
+        }
+        function showImage3() {
+            document.getElementById("homeContent").style.display = "none";
+            document.getElementById("image1Content").style.display = "none";
+            document.getElementById("image2Content").style.display = "none";
+            document.getElementById("image3Content").style.display = "block";
+        }
+        function createSnowflakes() {
+            const snowContainer = document.body;
+            for (let i = 0; i < 50; i++) {
+                let snowflake = document.createElement("div");
+                snowflake.className = "snowflake";
+                snowflake.innerHTML = "❄";
+                snowflake.style.left = Math.random() * 100 + "vw";
+                snowflake.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                snowflake.style.opacity = Math.random();
+                snowContainer.appendChild(snowflake);
+                setTimeout(() => snowflake.remove(), 5000);
+            }
+        }
+        setInterval(createSnowflakes, 500);
+    </script>
+</body>
+</html>
